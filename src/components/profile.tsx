@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 
 const Profile = () => {
   const session = useSession();
+  console.log('usersession',session)
   if (session.data?.user) {
     return <div>From client: user is siged in</div>;
   } else {
