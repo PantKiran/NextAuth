@@ -19,17 +19,17 @@ export default async function Header() {
           {" "}
           Discuss
         </Link>
-        <NavbarContent justify="center">
-          <NavbarItem>
-            <Input />
-          </NavbarItem>
-        </NavbarContent>
-        <NavbarContent justify="end">
-          <NavbarItem>
-            {session?.user ? <div>Signed In</div> : <div>Signed Out</div>}
-          </NavbarItem>
-        </NavbarContent>
       </NavbarBrand>
+      <NavbarContent justify="center">
+        <NavbarItem>
+          <Input />
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent justify="end">
+        <NavbarItem>
+          {session?.user ? <div>Signed In</div> : <div>Signed Out</div>}
+        </NavbarItem>
+      </NavbarContent>
     </Navbar>
   );
 }

@@ -5,7 +5,6 @@ import Profile from "@/components/profile";
 
 export default async function Home() {
   const session = await auth();
-  console.log('mysession',session?.user);
   return (
     <div>
       <form action={actions.signIn}>
