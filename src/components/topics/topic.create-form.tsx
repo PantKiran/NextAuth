@@ -11,7 +11,7 @@ import * as actions from "@/actions";
 import { useFormState, useFormStatus } from "react-dom";
 import { message } from "antd";
 const TopicCreateForm = () => {
-  const [formState, action] = useFormState(actions.createTopic, 5);
+  const [formState, action] = useFormState(actions.createTopic, { errors: {} });
   return (
     <Popover placement="left">
       <PopoverTrigger>
