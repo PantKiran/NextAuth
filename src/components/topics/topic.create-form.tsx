@@ -10,6 +10,7 @@ import {
 import * as actions from "@/actions";
 import { useFormState, useFormStatus } from "react-dom";
 import { message } from "antd";
+import { join } from "path";
 const TopicCreateForm = () => {
   const [formState, action] = useFormState(actions.createTopic, { errors: {} });
   return (
@@ -37,6 +38,11 @@ const TopicCreateForm = () => {
               isInvalid={!!formState.errors.description}
               errorMessage={formState.errors.description?.join(", ")}
             />
+            {formState.errors._form ? (
+              <div className=" rounded p-2 bg-red-200 border border-red-400">
+                {formState.errors._form.join(", ")}
+              </div>
+            ) : null}
             <Button type="submit">Submit</Button>
           </div>
         </form>
