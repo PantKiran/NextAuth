@@ -6,11 +6,12 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Spinner,
 } from "@nextui-org/react";
 import * as actions from "@/actions";
-import { useFormState, useFormStatus } from "react-dom";
-import { message } from "antd";
-import { join } from "path";
+import { useFormState } from "react-dom";
+import FormButton from "../common/form-button";
+
 const TopicCreateForm = () => {
   const [formState, action] = useFormState(actions.createTopic, { errors: {} });
   return (
@@ -43,7 +44,7 @@ const TopicCreateForm = () => {
                 {formState.errors._form.join(", ")}
               </div>
             ) : null}
-            <Button type="submit">Submit</Button>
+            <FormButton>Submit</FormButton>
           </div>
         </form>
       </PopoverContent>
