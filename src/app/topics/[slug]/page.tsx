@@ -7,7 +7,6 @@ interface TopicShowPageProps {
 }
 const TopicShowPage = ({ params }: TopicShowPageProps) => {
   const { slug } = params;
-  console.log(slug);
   return (
     <div className="grid grid-cols-4 gap-4 p-4">
       <div className=" col-span-3">
