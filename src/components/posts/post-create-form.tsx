@@ -11,8 +11,14 @@ import {
 } from "@nextui-org/react";
 import * as actions from "@/actions";
 import FormButton from "../common/form-button";
-export const PostCreateForm = () => {
-  const [formState, action] = useFormState(actions.createPost, { errors: {} });
+interface PostCreateFormProps {
+  slug: string;
+}
+export const PostCreateForm = ({ slug }: PostCreateFormProps) => {
+  const [formState, action] = useFormState(
+    actions.createPost.bind(null, slug),
+    { errors: {} }
+  );
   return (
     <Popover placement="left">
       <PopoverTrigger>

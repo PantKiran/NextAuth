@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import { db } from "@/db";
 import paths from "@/paths";
 import type { Post } from "@prisma/client";
+import { error } from "console";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -19,6 +20,7 @@ interface CreatePostFormState {
   };
 }
 export const createPost = async (
+  slug: string,
   formState: CreatePostFormState,
   formData: FormData
 ): Promise<CreatePostFormState> => {
@@ -31,13 +33,24 @@ export const createPost = async (
       errors: result.error.flatten().fieldErrors,
     };
   }
-  const session = await auth()
-  if(!session || !session.user){
-return {
-    errors:{
-        _form: ['You must be signed in to do this']
-    }
-}
+  const session = await auth();
+  if (!session || !session.user) {
+    return {
+      errors: {
+        _form: ["You must be signed in to do this"],
+      },
+    };
+  }
+
+  const topic = await db.topic.findFirst({
+    where: { slug },
+  });
+  if (!topic) {
+    return {
+      errors: {
+        _form: ["Canot find topic"],
+      },
+    };
   }
   return {
     errors: {},
