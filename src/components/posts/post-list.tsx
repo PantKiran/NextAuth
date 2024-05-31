@@ -1,6 +1,6 @@
-import type { Post, User, Topic } from '@prisma/client';
-import Link from 'next/link';
-import paths from '@/paths';
+import type { Post, User, Topic } from "@prisma/client";
+import Link from "next/link";
+import paths from "@/paths";
 
 // TODO: Get list of posts into this component somehow
 export default function PostList() {
@@ -8,7 +8,7 @@ export default function PostList() {
     const topicSlug = post.topic.slug;
 
     if (!topicSlug) {
-      throw new Error('Need a slug to link to a post');
+      throw new Error("Need a slug to link to a post");
     }
 
     return (

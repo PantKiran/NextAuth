@@ -37,6 +37,7 @@ export async function createTopic(
     return { errors: result.error.flatten().fieldErrors };
   }
   const session = await auth();
+  console.log(session);
   if (!session || !session.user) {
     return {
       errors: {
