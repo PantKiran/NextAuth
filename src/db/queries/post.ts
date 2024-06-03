@@ -5,6 +5,8 @@ export type PostWithData = Post & {
   user: { name: string | null };
   _count: { comments: number };
 };
+// alternative type names and query definations
+// export type PostWithData=Awaited<ReturnType<typeof fetchPostByTopicSlug>>[number]
 
 export function fetchPostByTopicSlug(slug: string):Promise<PostWithData[]> {
   return db.post.findMany({
