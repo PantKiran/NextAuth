@@ -1,3 +1,6 @@
+
+
+'use client'
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
 import CommentCreateForm from "@/components/comments/comment-create-form";
@@ -21,11 +24,12 @@ export default function CommentShow({ commentId,comments }: CommentShowProps) {
       <CommentShow key={child.id} commentId={child.id} comments={comments} />
     );
   });
-
+ 
   return (
     <div className="p-4 border mt-2 mb-1">
       <div className="flex gap-3">
         <Image
+         loader={() => comment.user.image || ""} 
           src={comment.user.image || ""}
           alt="user image"
           width={40}

@@ -3,7 +3,6 @@ import { db } from "..";
 export type CommentWithAuthor=(
     Comment & {
         user:{
-
             name:string | null ,
             image:string | null
         }
