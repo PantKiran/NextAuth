@@ -1,17 +1,18 @@
 
 
-'use client'
+
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
 import CommentCreateForm from "@/components/comments/comment-create-form";
-import { CommentWithAuthor } from "@/db/queries/comments";
+import { CommentWithAuthor, fetchCommentByPostId } from "@/db/queries/comments";
 
 interface CommentShowProps {
   commentId: string;
-  comments:CommentWithAuthor[]
+ postId:string
 }
 
-export default function CommentShow({ commentId,comments }: CommentShowProps) {
+export default async function CommentShow({ commentId,postId }: CommentShowProps) {
+  const comments = await fetchCommentByPostId(postId)
   const comment = comments.find((c) => c.id === commentId);
 
   if (!comment) {
@@ -21,15 +22,16 @@ export default function CommentShow({ commentId,comments }: CommentShowProps) {
   const children = comments.filter((c) => c.parentId === commentId);
   const renderedChildren = children.map((child) => {
     return (
-      <CommentShow key={child.id} commentId={child.id} comments={comments} />
+      <CommentShow key={child.id} commentId={child.id} postId={postId} />
     );
   });
  
   return (
     <div className="p-4 border mt-2 mb-1">
       <div className="flex gap-3">
-        <Image
-         loader={() => comment.user.image || ""} 
+        
+        <img
+        //  loader={() => comment.user.image || ""} 
           src={comment.user.image || ""}
           alt="user image"
           width={40}
