@@ -7,6 +7,7 @@ import {
   Input,
 } from "@nextui-org/react";
 import HeaderAuth from "./header-auth";
+import SerachInput from "./search-input";
 export default function Header() {
   return (
     <Navbar className="shadow mb-6">
@@ -18,7 +19,7 @@ export default function Header() {
       </NavbarBrand>
       <NavbarContent justify="center">
         <NavbarItem>
-          <Input />
+          <SerachInput/>
         </NavbarItem>
       </NavbarContent>
 
